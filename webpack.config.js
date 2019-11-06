@@ -48,12 +48,12 @@ const browserConfig = {
   context: resolve('src'),
   entry: './index.browser.js',
   externals: {
-    'assert': 'assert',
     'react-cookie': 'react-cookie'
   },
   output: {
     ...baseConfig.output,
     filename: 'browser.js',
+    libraryTarget: 'umd',
     publicPath: '/'
   }
 }
