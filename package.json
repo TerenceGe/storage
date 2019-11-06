@@ -1,0 +1,46 @@
+{
+  "name": "storage",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/node.js",
+  "browser": "dist/browser.js",
+  "react-native": "dist/native.js",
+  "scripts": {
+    "build": "rimraf dist && npm run build:native && npm run build:browser && npm run build:node",
+    "build:native": "cross-env NODE_ENV=production TARGET=native webpack --progress --colors",
+    "build:browser": "cross-env NODE_ENV=production TARGET=browser webpack --progress --colors",
+    "build:node": "cross-env NODE_ENV=production TARGET=node webpack --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TerenceGe/storage.git"
+  },
+  "author": "Terence Ge <terencegehui@yahoo.com> (http://terencege.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TerenceGe/storage/issues"
+  },
+  "homepage": "https://github.com/TerenceGe/storage#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "react-cookie": "^4.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "react": "^16.11.0",
+    "rimraf": "^3.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
