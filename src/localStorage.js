@@ -1,10 +1,8 @@
-import assert from 'assert'
-
 const store = localStorage
 
 const getItem = async (key, json = false) => {
   try {
-    assert(key, 'Invalid storage key')
+    if (!key) throw new Error('Invalid storage key')
     const value = store[key]
     return (json && !!value) ? JSON.parse(value) : value
   } catch (error) {
@@ -14,9 +12,9 @@ const getItem = async (key, json = false) => {
 
 const setItem = async (key, value, json = false) => {
   try {
-    assert(key, 'Invalid storage key')
+    if (!key) throw new Error('Invalid storage key')
     const stringValue = (json && !!value) ? JSON.stringify(value) : value
-    assert(typeof stringValue === 'string' && stringValue && stringValue !== 'null' && stringValue !== 'undefined', 'Invalid storage value')
+    if (!(typeof stringValue === 'string' && stringValue && stringValue !== 'null' && stringValue !== 'undefined')) throw new Error('Invalid storage value')
     store[key] = stringValue
   } catch (error) {
     console.error(`LocalStorage setItem Error: ${error.message}`)
@@ -25,6 +23,7 @@ const setItem = async (key, value, json = false) => {
 
 const removeItem = async (key) => {
   try {
+    if (!key) throw new Error('Invalid storage key')
     delete store[key]
   } catch (error) {
     console.error(`LocalStorage removeItem Error: ${error.message}`)

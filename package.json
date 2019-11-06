@@ -1,6 +1,6 @@
 {
   "name": "@terencege/storage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/node.js",
   "browser": "dist/browser.js",
@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/TerenceGe/storage#readme",
   "dependencies": {
-    "assert": "^2.0.0",
     "react-cookie": "^4.0.1"
   },
   "devDependencies": {

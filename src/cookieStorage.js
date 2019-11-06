@@ -1,11 +1,10 @@
-import assert from 'assert'
 import { Cookies } from 'react-cookie'
 
 const cookies = new Cookies()
 
 const getItem = async (key, json = false, options = {}) => {
   try {
-    assert(key, 'Invalid storage key')
+    if (!key) throw new Error('Invalid storage key')
     const value = cookies.get(key, options)
     return (json && !!value) ? JSON.parse(value) : value
   } catch (error) {
@@ -15,9 +14,9 @@ const getItem = async (key, json = false, options = {}) => {
 
 const setItem = async (key, value, json = false, options = {}) => {
   try {
-    assert(key, 'Invalid storage key')
+    if (!key) throw new Error('Invalid storage key')
     const stringValue = (json && !!value) ? JSON.stringify(value) : value
-    assert(typeof stringValue === 'string' && stringValue && stringValue !== 'null' && stringValue !== 'undefined', 'Invalid storage value')
+    if (!(typeof stringValue === 'string' && stringValue && stringValue !== 'null' && stringValue !== 'undefined')) throw new Error('Invalid storage value')
     cookies.set(key, stringValue, options)
   } catch (error) {
     console.error(`CookieStorage setItem Error: ${error.message}`)
@@ -26,6 +25,7 @@ const setItem = async (key, value, json = false, options = {}) => {
 
 const removeItem = async (key, options = {}) => {
   try {
+    if (!key) throw new Error('Invalid storage key')
     cookies.remove(key, options)
   } catch (error) {
     console.error(`CookieStorage removeItem Error: ${error.message}`)

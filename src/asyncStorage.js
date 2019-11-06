@@ -29,6 +29,7 @@ const mergeItem = async (key, value, json = false) => {
 
 const removeItem = async (key) => {
   try {
+    if (!key) throw new Error('Invalid storage key')
     await AsyncStorage.removeItem(key)
   } catch (error) {
     console.error(`AsyncStorage removeItem Error: ${error.message}`)

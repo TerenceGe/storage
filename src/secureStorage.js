@@ -1,9 +1,8 @@
-import assert from 'assert'
 import SensitiveInfo from 'react-native-sensitive-info'
 
 const getItem = async (key, json = false) => {
   try {
-    assert(key, 'Invalid storage key')
+    if (!key) throw new Error('Invalid storage key')
     const value = await SensitiveInfo.getItem(key, {
       sharedPreferencesName: 'BasisSharedPrefs',
       keychainService: 'BasisKeychain'
@@ -16,9 +15,9 @@ const getItem = async (key, json = false) => {
 
 const setItem = async (key, value, json = false) => {
   try {
-    assert(key, 'Invalid storage key')
+    if (!key) throw new Error('Invalid storage key')
     const stringValue = (json && !!value) ? JSON.stringify(value) : value
-    assert(typeof stringValue === 'string' && stringValue && stringValue !== 'null' && stringValue !== 'undefined', 'Invalid storage value')
+    if (!(typeof stringValue === 'string' && stringValue && stringValue !== 'null' && stringValue !== 'undefined')) throw new Error('Invalid storage value')
     await SensitiveInfo.setItem(key, stringValue, {
       sharedPreferencesName: 'BasisSharedPrefs',
       keychainService: 'BasisKeychain',
@@ -31,6 +30,7 @@ const setItem = async (key, value, json = false) => {
 
 const removeItem = async (key) => {
   try {
+    if (!key) throw new Error('Invalid storage key')
     await SensitiveInfo.deleteItem(key, {
       sharedPreferencesName: 'BasisSharedPrefs',
       keychainService: 'BasisKeychain'
